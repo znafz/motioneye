@@ -2,16 +2,20 @@
 version: "2"
 services:
   motioneye:
-    image: cahna/motioneye
+    image: ccrisan/motioneye:master-armhf
+    devices:
+      - "/dev/video0"
     ports:
       - "8081:8081"
       - "8765:8765"
+    environment:
+      - TZ=America/New_York
     volumes_from:
       - data_motioneye
 
   data_motioneye:
-    image: busybox
+    image: arm32v6/busybox
     volumes:
-      - /docker/motioneye/etc:/etc/motioneye
-      - /docker/motioneye/media:/var/lib/motioneye
+      - /home/pi/docker/motioneye/etc:/etc/motioneye
+      - /home/pi/docker/motioneye/media:/var/lib/motioneye
 

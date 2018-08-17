@@ -2,3 +2,5 @@ version: '2'
 services:
   telegrambot:
     build: .
+    volumes:
+      - "./bot:./bot"

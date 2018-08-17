@@ -3,4 +3,4 @@ services:
   telegrambot:
     build: .
     volumes:
-      - "./bot:./bot"
+      - "./bot:/app/bot"

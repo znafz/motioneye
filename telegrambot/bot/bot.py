@@ -2,6 +2,6 @@ import time
 import sys
 
 if __name__ == "__main__":
-    print("test")
-    time.sleep(5)
-    sys.exit()
+    while 1:
+        print("in the bot loop update")
+        time.sleep(5)

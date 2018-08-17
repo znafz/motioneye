@@ -1,10 +1,7 @@
-FROM arm32v7/python:3
+FROM arm32v7/debian:jessie-slim
 
-WORKDIR /usr/src/app
-
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update && apt-get install -y python3
 
 COPY . .
 
-CMD [ "python", "./run.py" ]
+CMD [ "python3", "-u", "run.py" ]

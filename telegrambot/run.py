@@ -2,18 +2,19 @@
 import subprocess
 import os
 import signal
+import time
 
-def check_pid(pid):        
-    try:
-        os.kill(pid, 0)
-    except OSError:
-        return False
-    else:
-        return True
-pid = 0
-while(True):
-    if (not check_pid(pid)):
-        cmd = ['python', 'bot/bot.py']
-        pid = subprocess.Popen(cmd).pid
-    if os.path.isfile("kill"):
-        os.kill(pid, signal.SIGTERM)
+
+
+if __name__ == "__main__":
+    print("starting dev environment")
+    cmd = ['python3', 'bot/bot.py']
+    proc = subprocess.Popen(cmd)
+    while(True):
+        if (proc.poll() != None):
+            print("restarting bot")
+            proc = subprocess.Popen(cmd)
+        if os.path.isfile("bot/kill"):
+            proc.terminate()
+            os.remove("kill")
+        time.sleep(3)

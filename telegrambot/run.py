@@ -15,7 +15,6 @@ if __name__ == "__main__":
         if os.path.getmtime("bot/bot.py") != lastedit:
             lastedit = os.path.getmtime("bot/bot.py")
             proc.terminate()
-        if (proc.poll() != None):
             print("restarting bot")
             proc = subprocess.Popen(cmd)
         if os.path.isfile("bot/kill"):

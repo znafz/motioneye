@@ -1,4 +1,4 @@
-FROM arm32v7/debian:jessie-slim
+FROM resin/raspberry-pi-debian
 
 RUN apt-get update && apt-get install -y python3 python3-pip
 
@@ -8,4 +8,4 @@ COPY . .
 
 RUN pip3 install telepot
 
-CMD [ "python3", "-u", "run.py" ]
+CMD [ "python3", "-u", "run.py" ]ls

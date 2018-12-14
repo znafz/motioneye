@@ -7,11 +7,10 @@ from pprint import pprint
 
 if __name__ == "__main__":
     with open('bot/apiKey', 'r') as keyfile:
-        with open('bot/userid', 'r') as useridfile:
+        with open('bot/chatid', 'r') as chatidfile:
             token = keyfile.readline()
-            user = useridfile.readline()
+            chatid = chatidfile.readline()
             bot = telepot.Bot(token)
-            print(bot.getUpdates())
             latest = ""
             while(True):
                 files = []
@@ -20,6 +19,7 @@ if __name__ == "__main__":
                         files.append(os.path.join(root, filename))
                 temp = max(files, key=os.path.getctime)
                 if(temp != latest):
-                    print(temp)
+                    video = open(temp, 'rb')
+                    bot.sendVideo(chatid, video)
                     latest = temp
                 time.sleep(5)

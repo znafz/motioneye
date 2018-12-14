@@ -3,6 +3,7 @@ import sys
 import telepot
 import os
 import fnmatch
+import datetime
 from pprint import pprint
 
 if __name__ == "__main__":
@@ -15,11 +16,12 @@ if __name__ == "__main__":
             while(True):
                 files = []
                 for root, dirnames, filenames in os.walk('/var/lib/motioneye/'):
-                    for filename in fnmatch.filter(filenames, '*.mp4'):
+                    for filename in fnmatch.filter(filenames, '*.mp4.thumb'):
                         files.append(os.path.join(root, filename))
-                temp = max(files, key=os.path.getctime)
+                temp = max(files, key=os.path.getctime)[:-6]
                 if(temp != latest):
                     video = open(temp, 'rb')
+                    print('sending ' + temp)
                     bot.sendVideo(chatid, video)
                     latest = temp
-                time.sleep(5)
+                time.sleep(10)

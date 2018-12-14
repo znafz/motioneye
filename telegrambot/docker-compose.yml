@@ -4,3 +4,4 @@ services:
     build: .
     volumes:
       - "./bot:/app/bot"
+      - /home/pi/docker/motioneye/media:/var/lib/motioneye
